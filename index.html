@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Research abstracts and conference posters by Tanya O. Alauddin, applying machine learning to carbonate thin sections, digital rocks and aquifer salinity.">
+<meta name="author" content="Tanya O. Alauddin">
+<style>*,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Tanya O. Alauddin Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a single reading column of research entries, each paired with its figures and poster, like pages pulled from a core report. */
+:root {
+  --bg: #f5f6f4;
+  --surface: #ffffff;
+  --ink: #18222b;
+  --muted: #56636d;
+  --rule: #d6dbd8;
+  --accent: #1c6b66;
+  --accent-soft: #e2efec;
+  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11171b; --surface: #182128; --ink: #e6ebe9; --muted: #9aa8b0;
+    --rule: #2b3740; --accent: #6cc3b9; --accent-soft: #1d3634; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11171b; --surface: #182128; --ink: #e6ebe9; --muted: #9aa8b0;
+  --rule: #2b3740; --accent: #6cc3b9; --accent-soft: #1d3634; color-scheme: dark;
+}
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 17px; line-height: 1.62;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 64px;
+}
+.wrap { max-width: 860px; margin: 0 auto; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+header.top { padding-block: 64px 36px; border-bottom: 1px solid var(--rule); }
+.eyebrow {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--accent); margin: 0 0 14px;
+}
+h1 {
+  font-family: var(--font-display); font-weight: 700; font-size: clamp(34px, 6vw, 52px);
+  line-height: 1.08; margin: 0 0 18px; text-wrap: balance; letter-spacing: -0.01em;
+}
+.lede { font-size: 19px; color: var(--muted); max-width: 62ch; margin: 0; }
+
+nav.index { padding-block: 28px 8px; }
+nav.index ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+nav.index a {
+  display: grid; grid-template-columns: 9.5em 1fr; gap: 16px; align-items: baseline;
+  padding: 10px 0; text-decoration: none; color: var(--ink); border-bottom: 1px dashed var(--rule);
+}
+nav.index a:hover .t { color: var(--accent); }
+nav.index .v { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); letter-spacing: .02em; }
+nav.index .t { font-family: var(--font-ui); font-size: 15px; font-weight: 500; line-height: 1.4; }
+@media (max-width: 560px) { nav.index a { grid-template-columns: 1fr; gap: 2px; } }
+
+article { padding-block: 56px 8px; border-bottom: 1px solid var(--rule); scroll-margin-top: 16px; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin-bottom: 14px; }
+.venue { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.chip {
+  font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: .03em;
+  padding: 3px 9px; border-radius: 3px; background: var(--accent-soft); color: var(--accent);
+}
+.chip.plain { background: transparent; color: var(--muted); border: 1px solid var(--rule); font-weight: 500; }
+h2 {
+  font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 3.6vw, 31px);
+  line-height: 1.2; margin: 0 0 12px; text-wrap: balance;
+}
+.authors { font-family: var(--font-ui); font-size: 15px; color: var(--muted); margin: 0 0 26px; }
+.authors b { color: var(--ink); font-weight: 600; }
+h3 {
+  font-family: var(--font-ui); font-size: 12.5px; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--accent); margin: 28px 0 8px;
+}
+.body p { margin: 0 0 14px; max-width: 68ch; }
+.body h3:first-child { margin-top: 0; }
+
+figure { margin: 28px 0; }
+figure button {
+  display: block; width: 100%; padding: 0; border: 1px solid var(--rule); background: #fff;
+  cursor: zoom-in; border-radius: 2px; overflow: hidden;
+}
+figure img { display: block; width: 100%; height: auto; }
+figure.narrow button { max-width: 420px; }
+figcaption { font-family: var(--font-ui); font-size: 13.5px; line-height: 1.5; color: var(--muted); margin-top: 10px; max-width: 70ch; }
+figcaption b { color: var(--ink); font-weight: 600; }
+.figs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+.figs figure { margin: 0; min-width: 0; }
+@media (max-width: 640px) { .figs { grid-template-columns: 1fr; } }
+
+.poster {
+  margin: 40px 0 24px; padding: 22px; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px;
+}
+.poster .label { font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 4px; }
+.poster .sub { font-family: var(--font-ui); font-size: 14px; color: var(--muted); margin: 0 0 16px; }
+.poster figure { margin: 0; }
+.poster.portrait figure button { max-width: 520px; margin: 0 auto; }
+.hint { font-family: var(--font-ui); font-size: 12.5px; color: var(--muted); margin: 10px 0 0; }
+
+.eq { overflow-x: auto; margin: 6px 0 18px; padding: 6px 0; max-width: 68ch; }
+.body math { font-size: 1.05em; }
+.body p math { white-space: nowrap; }
+footer { padding-block: 40px 0; font-family: var(--font-ui); font-size: 13px; color: var(--muted); }
+
+.lightbox[hidden] { display: none !important; }
+.lightbox {
+  position: fixed; inset: 0; z-index: 50; background: rgba(8, 12, 15, .92);
+  display: flex; flex-direction: column;
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+}
+.lb-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; color: #e6ebe9; font-family: var(--font-ui); font-size: 14px; }
+.lb-bar span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lb-bar .btns { display: flex; gap: 8px; flex-shrink: 0; }
+.lb-bar button {
+  font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: #e6ebe9; background: transparent;
+  border: 1px solid rgba(230, 235, 233, .4); border-radius: 3px; padding: 6px 12px; cursor: pointer;
+}
+.lb-stage { flex: 1; overflow: auto; display: flex; align-items: flex-start; justify-content: center; padding: 8px 16px 24px; }
+.lb-stage img { max-width: 100%; height: auto; background: #fff; cursor: zoom-in; }
+.lb-stage.full { justify-content: flex-start; }
+.lb-stage.full img { max-width: none; cursor: zoom-out; }
+@media (prefers-reduced-motion: no-preference) { nav.index a, figure button { transition: color .15s, border-color .15s; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <p class="eyebrow">Research portfolio · 2024 to 2026</p>
+    <h1>Tanya O. Alauddin</h1>
+    <p class="lede">Conference abstracts and posters applying machine learning to subsurface data: carbonate thin sections, grain-scale petrography, digital rock permeability and aquifer salinity compartments.</p>
+  </header>
+
+  <nav class="index" aria-label="Contents">
+    <ol>
+      <li><a href="#geo4"><span class="v">GEO 4.0 · 2024</span><span class="t">Neural network architecture and hyperparameter effects on automated carbonate thin section classification</span></a></li>
+      <li><a href="#grains"><span class="v">IMAGE · 2026</span><span class="t">Deep learning-based grain segmentation and textural analysis from thin section images</span></a></li>
+      <li><a href="#agu"><span class="v">AGU · 2026</span><span class="t">Graph-based approaches for permeability prediction and analysis of digital rocks</span></a></li>
+      <li><a href="#salinity"><span class="v">IMAGE · 2026</span><span class="t">From geochemical fronts to hydraulic compartments</span></a></li>
+    </ol>
+  </nav>
+
+  <article id="geo4">
+    <div class="meta"><span class="venue">GEO 4.0 Symposium · Al Khobar · 2024</span><span class="chip">First author</span><span class="chip plain">Abstract + poster</span></div>
+    <h2>Neural network architecture and hyperparameter effects on automated carbonate thin section classification</h2>
+    <p class="authors"><b>Tanya O. Alauddin</b> and Mustafa A. Al Ibrahim</p>
+    <div class="body">
+      <h3>Introduction</h3>
+      <p>Thin section analysis is one of the traditional geologic methods still being utilized today in understanding rocks for hydrocarbon exploration and production workflows. The objective of this paper is to analyze the effect of different neural network architectures and hyperparameters on the identification of Dunham texture of carbonate thin sections. The study assumes the availability of only a small labeled dataset with high-resolution whole slide images.</p>
+      <h3>Methodology</h3>
+      <p>Carbonate intervals from different wells were identified and their thin sections were imaged using a thin section scanner. The thin sections were examined and the dominant Dunham classification (mudstone, wackestone, packstone, grainstone) was assigned as can be seen in Figure 1. Preprocessing the images involved resizing, and cropping the images to remove any pixels related to the glass slide. This was done automatically using neural networks to identify the background. Small patches were extracted from each thin section creating the dataset. Convolutional neural network models are finetuned to the training dataset, and tested on the test dataset to obtain prediction accuracy. Different neural network architectures were tested, for example, ResNet 18 and ResNet 32. In addition, different hyperparameters related to image preprocessing and the neural network were tested, such as image resolution/size and the number of epochs used in training the network.</p>
+      <figure>
+        <button type="button" data-zoom="img/geo_fig1.png" data-cap="Figure 1. Examples of each Dunham classification in carbonate rocks"><img src="img/geo_fig1.png" alt="Four thin section images showing mudstone, wackestone, packstone and grainstone textures" loading="lazy"></button>
+        <figcaption><b>Figure 1.</b> Examples of each Dunham classification in carbonate rocks.</figcaption>
+      </figure>
+      <h3>Results and conclusions</h3>
+      <p>Test results show that the overall accuracy of the test dataset is 94%. The best Dunham class accuracies are 96%, 94%, 91%, and 94%, for mudstones, wackestones, packstones, and grainstones respectively as can be seen in the confusion matrix showing the probability of a correct prediction in Figure 2. When tested on thin sections from a different depth interval, the model was able to predict accurately seven out of eight thin sections. The choice of network architecture had the biggest impact on the accuracy of the results. ResNet 34 overall yielded better accuracy than ResNet 18 if the same hyperparameters are used. The accuracy of the models stayed relatively similar if lower resolution images are used.</p>
+      <p>Overall, the current model is accurate enough for human-in-the-loop training and practical usage. This will improve its prediction capabilities as more data is injected. In addition, the use of larger network architecture, e.g., ResNet 50 instead of ResNet 34, yields better results with little increase in computational expense. The use of convolutional neural networks and high-resolution thin section images allows for the automation of Dunham classification with high accuracy and consistency, and moving interpretation from qualitative to quantitative. Integration of the machine learning solution as a practical workflow with graphical user interface is essential for adopting the technology. Human-in-the-loop approach provides flexibility for the user and improve confidence in the output.</p>
+      <figure class="narrow">
+        <button type="button" data-zoom="img/geo_fig2.png" data-cap="Figure 2. Confusion matrix of Dunham classification predictions"><img src="img/geo_fig2.png" alt="Confusion matrix of predicted versus true Dunham classes" loading="lazy"></button>
+        <figcaption><b>Figure 2.</b> Confusion matrix showing the probability of a correct prediction of Dunham classification by the model.</figcaption>
+      </figure>
+    </div>
+    <section class="poster portrait" aria-label="Poster">
+      <p class="label">Conference poster</p>
+      <p class="sub">Presented at the GEO 4.0 Digitalization in Geosciences Symposium, Al Khobar, October 2024</p>
+      <figure>
+        <button type="button" data-zoom="img/poster_geo4.jpg" data-cap="GEO 4.0 poster"><img src="img/poster_geo4.jpg" alt="GEO 4.0 poster on neural network architecture effects in carbonate thin section classification" loading="lazy"></button>
+      </figure>
+      <p class="hint">Select the poster to open it full size.</p>
+    </section>
+  </article>
+
+  <article id="grains">
+    <div class="meta"><span class="venue">IMAGE · 2026</span><span class="chip">First author</span><span class="chip plain">Abstract + poster</span></div>
+    <h2>Deep learning-based grain segmentation and textural analysis from thin section images for reservoir characterization</h2>
+    <p class="authors"><b>Tanya O. Alauddin</b> and Mustafa A. Al Ibrahim</p>
+    <div class="body">
+      <h3>Abstract</h3>
+      <p>Petrographic thin section analysis provides insight into grain composition, texture, and pore structure that influence reservoir properties such as porosity, permeability, and fluid flow behavior. However, traditional interpretation relies on manual inspection by experts and is difficult to scale across large datasets. Advances in deep learning and computer vision provide an opportunity to automate petrographic analysis and improve the efficiency of reservoir characterization. In this study, a deep learning–based workflow is developed to automatically identify and segment individual grains in thin section images. Computer vision segmentation models are used to detect grain boundaries and separate grains within the rock matrix. The resulting segmentation outputs enable rapid visualization of grain distributions and support quantitative analysis of rock texture and grain size variability. This automated approach has the potential to accelerate petrographic interpretation and support improved reservoir characterization.</p>
+      <h3>Methods</h3>
+      <p>A deep learning–based workflow was developed to perform instance segmentation of grains in thin section images. The workflow utilizes the Cellpose segmentation model (Stringer et al., 2021), which detects and separates individual objects within microscopy images. Thin section images are processed to identify grain boundaries and segment individual grains within the rock matrix. Each grain is assigned a unique label and visualized through color-coded segmentation maps, enabling rapid identification of grain distributions and spatial relationships within the thin section. These outputs support quantitative analysis of grain size distribution and rock texture. The current implementation was trained and evaluated using a limited dataset of thin section images primarily containing medium-sized grains. The dataset was used to assess the feasibility of applying deep learning–based instance segmentation to petrographic imagery (Al Ibrahim et al., 2023).</p>
+      <figure>
+        <button type="button" data-zoom="img/img_fig1.png" data-cap="Figure 1. Thin section image before and after grain segmentation"><img src="img/img_fig1.png" alt="Thin section image beside its color-coded grain segmentation" loading="lazy"></button>
+        <figcaption><b>Figure 1.</b> Thin section image before and after individual color-coded segmentation of grains.</figcaption>
+      </figure>
+      <h3>Results and discussion</h3>
+      <p>Initial results show that the model can delineate grain boundaries and separate individual grains within the tested thin section images (Figure 1). The segmentation outputs provide clear visualization of grain distributions and allow individual grains to be distinguished within the rock matrix. These results demonstrate the potential of deep learning–based segmentation methods to automate petrographic grain identification and enable quantitative analysis of grain size variability and textural heterogeneity in reservoir rocks. Ongoing work focuses on expanding the training dataset to include a wider range of lithologies, grain sizes, and textures to improve model robustness and generalization. Additional segmentation architectures, including Mask R-CNN (He et al., 2017), will also be evaluated and compared with the current Cellpose-based approach.</p>
+      <h3>Conclusions</h3>
+      <p>Deep learning–based instance segmentation can be applied to petrographic thin section images to automate grain identification and segmentation. Such approaches can accelerate petrographic analysis and enable scalable characterization of rock textures. Automated grain segmentation workflows may support improved reservoir characterization by enabling rapid, quantitative analysis of rock textures that influence key reservoir properties such as porosity and permeability.</p>
+    </div>
+    <section class="poster" aria-label="Poster">
+      <p class="label">Conference poster</p>
+      <p class="sub">IMAGE 2026, International Meeting for Applied Geoscience &amp; Energy</p>
+      <figure>
+        <button type="button" data-zoom="img/poster_image26.jpg" data-cap="IMAGE 2026 poster"><img src="img/poster_image26.jpg" alt="IMAGE 2026 poster on deep learning grain segmentation from thin section images" loading="lazy"></button>
+      </figure>
+      <p class="hint">Select the poster to open it full size, then select again to zoom in.</p>
+    </section>
+  </article>
+
+  <article id="agu">
+    <div class="meta"><span class="venue">AGU · 2026</span><span class="chip">First author</span><span class="chip plain">Abstract</span></div>
+    <h2>Graph-based approaches for permeability prediction and analysis of digital rocks</h2>
+    <p class="authors"><b>Tanya O. Alauddin</b> and Rayan Kanfar</p>
+    <div class="body">
+      <h3>Abstract</h3>
+      <p>Digital rock analysis provides a powerful framework for estimating physical and transport properties. Permeability prediction requires computationally expensive fluid-flow simulations, motivating the use of graph-based surrogate models that approximate pore-network connectivity. This study explores graph-based approaches for permeability prediction in complex carbonate digital rocks. Graph-based metrics are also investigated as interpretable descriptors of digital-rock structure and permeability, with potential application in validating synthetically generated rocks against natural samples.</p>
+      <h3>Introduction</h3>
+      <p>Carbonate reservoirs hold much of the world’s hydrocarbon and CO<sub>2</sub>-storage capacity, but their complex pore structure makes permeability hard to predict from images. Graphs encode the connectivity that controls flow, offering a fast, interpretable surrogate for costly simulation (Liu et al., 2025). In this work, we explore graphs as reduced order models to estimate permeability and analyze digital rocks.</p>
+      <h3>Methods</h3>
+      <p>Segmented micro-CT subvolumes of two carbonates, Ketton (a well-connected oolitic limestone) and Estaillades (microporous), spanning 0.07 to 255 mD, were converted to graphs two ways: an explicit pore network via the SNOW algorithm in PoreSpy and OpenPNM (Gostick, 2017; Gostick et al., 2016), and a topological graph via the Mapper algorithm (Singh et al., 2007; Chung et al., 2024). Geometric and topological metrics were computed with NetworkX, and permeability ground truth is simulated using Stokes-flow from OpenPNM. A random-forest regression model was used to predict permeability and evaluated using cross-validation across the same set of subvolumes.</p>
+      <h3>Results and discussion</h3>
+      <p>Pore-network metrics predicted log-permeability with R<sup>2</sup> of about 0.39 (RMSE 0.65; 65 percent within a factor of three) as shown in Figure A. Mapper metrics were far less predictive; a distance-transform (pore-radius) filter improved them from R<sup>2</sup> near -0.9 to near 0 but did not match the pore network, indicating that explicit pore-throat connectivity carries permeability while the topological graph mainly reflects porosity. Geometric and topological graph metrics are computed and show correlation with permeability as shown in Figure B.</p>
+      <figure>
+        <button type="button" data-zoom="img/agu_figA.png" data-cap="Figure A. Predicted versus actual log-permeability"><img src="img/agu_figA.png" alt="Scatter plots of predicted versus actual log-permeability for pore-network and topological representations" loading="lazy"></button>
+        <figcaption><b>Figure A.</b> Predicted versus actual log-permeability under five-fold cross-validation, for the pore-network (left) and topological (right) representations, on the same Ketton and Estaillades subvolumes. The pore-network predictions follow the measured values closely, whereas the topological predictions change little as the true permeability increases.</figcaption>
+      </figure>
+      <figure>
+        <button type="button" data-zoom="img/agu_figB.png" data-cap="Figure B. Correlation of graph metrics with log-permeability"><img src="img/agu_figB.png" alt="Bar chart of absolute correlation between each graph metric and log-permeability" loading="lazy"></button>
+        <figcaption><b>Figure B.</b> Absolute correlation of each graph metric with log-permeability, pore-network (blue) versus topological (orange). Size- and connectivity-related pore-network metrics dominate.</figcaption>
+      </figure>
+      <h3>Conclusions</h3>
+      <p>The SNOW algorithm gives interpretable, modest permeability prediction on two carbonates and outperforms the topological approach, which remains a lightweight, porosity-sensitive complement. Future work will enlarge the dataset, refine topological descriptors, and use these metrics to validate augmented digital rocks.</p>
+    </div>
+  </article>
+
+  <article id="salinity">
+    <div class="meta"><span class="venue">IMAGE · 2026</span><span class="chip plain">Co-author</span><span class="chip plain">Expanded abstract</span></div>
+    <h2>From geochemical fronts to hydraulic compartments: application of machine learning, geostatistics and segmentation algorithms with physics-based validation</h2>
+    <p class="authors">Abul Khair Fahimuddin, Ibrahim Atwah, Waleed Saeed and <b>Tanya Alauddin</b></p>
+    <div class="body">
+<h3>Summary</h3>
+<p>Spatial variability in shallow aquifer salinity provides critical
+insight into groundwater flow architecture, mixing processes, and
+subsurface compartmentalization. Despite its importance, regional
+salinity mapping is often limited by sparse data coverage and reliance
+on purely interpolative methods. This study presents a hybrid
+geochemical modeling framework to reconstruct high-resolution salinity
+distributions and delineate chemically defined compartments within the
+Smackover aquifer using publicly available USGS geochemical data. Total
+dissolved solids (TDS) are predicted on a regular grid using a hybrid
+approach that integrates Universal Kriging with external drift and an
+XGBoost regression model. This methodology captures both spatial
+continuity and non-linear geochemical controls that are not adequately
+represented by conventional geostatistical techniques alone. The
+resulting salinity surface is subsequently processed using a
+gradient-based segmentation algorithm to identify sharp chemical fronts,
+interpreted as boundaries between hydro-chemical domains. Transition
+zones surrounding these fronts are explicitly buffered to exclude
+ambiguous mixing regions. The remaining low-gradient interiors are then
+classified as discrete salinity compartments. To assess physical
+consistency, the geochemically derived compartments are evaluated
+through hydraulic flow testing using a simplified groundwater drawdown
+simulation model. A “safe footprint” analysis determines whether pumping
+within low-gradient compartment interiors results in limited drawdown
+propagation across buffered front zones. Numerical simulations
+demonstrate that compartments defined solely from geochemical gradients
+exhibit measurable hydraulic coherence, thereby integrating data-driven
+salinity mapping with physics-based groundwater behavior.</p>
+<h3>Introduction</h3>
+<p>Practical understanding of subsurface compartmentalization is central
+to de-risking drilling operations, optimizing reservoir management, and
+managing produced water in the oil and gas industry. Salinity contrasts
+can serve as proxies for hydraulic connectivity, fault sealing capacity,
+and cross-formational leakage pathways (Yielding et al., 1997). In
+carbonate aquifers and deep brine systems, compartmentalization directly
+influences pressure support efficiency, water breakthrough timing, and
+the sustainability of brine extraction operations (Abdou and Carnegie,
+2011). Misinterpretation of connectivity may lead to suboptimal well
+placement, unexpected pressure depletion, or costly remediation
+interventions (Birkholzer et al., 2012). Existing approaches for
+delineating hydro-chemical domains typically rely on contour
+interpretation, hydro-chemical facies classification, or multivariate
+statistical clustering (Güler et al., 2002; Souid and Birkle, 2023).
+While these methods capture compositional similarity, they do not
+explicitly enforce spatial structure or quantify the sharpness of
+boundaries between domains. Recent advances in machine learning have
+introduced algorithms such as Random Forest, Gradient Boosting and deep
+learning for predictive hydro-chemical mapping (Al-Kindi et al., 2025;
+Zuo and Xiong 2019). These models can capture non-linear dependencies
+and interactions among geochemical variables ; however, most
+applications emphasize prediction accuracy rather than structural
+interpretation. Hybrid modeling frameworks that combine machine learning
+with geo-statistics have demonstrated improved predictive performance in
+environmental and mineral exploration contexts (Abdelmalek and Burton
+2024; Humphrey and Cave 2023). However, their application to systematic
+extraction of salinity-defined compartments in sedimentary aquifers
+remains limited. The present study addresses these limitations by
+integrating hybrid geochemical prediction, gradient-based spatial
+segmentation, and subsequent physics-based validation. In the following
+sections, salinity is reconstructed using a weighted combination of
+Universal Kriging with external drift and a machine-learning regression
+model based on well measurements of elemental concentrations. Hydraulic
+compartments are then defined objectively using salinity gradient
+magnitude, ensuring that boundaries reflect spatial contrasts rather
+than arbitrary concentration thresholds. To assess whether these
+chemically defined boundaries correspond to meaningful hydraulic
+isolation, each compartment is evaluated under controlled pumping
+scenarios by MODFLOW groundwater flow simulation models (Zheng and Wang,
+1999).</p>
+<h3>Theory and Methodology</h3>
+<p>Let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐱</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mathbf{x} = (x,y)</annotation></semantics></math>
+denote spatial location within an aquifer domain,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Ω</mi><annotation encoding="application/x-tex">\Omega</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">S\left( \mathbf{x} \right)</annotation></semantics></math>
+be the total dissolved solids (TDS) as measure of salinity in water
+samples. The objective is to reconstruct a continuous salinity field
+from discrete well measurements of major ions including
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mrow><mi>N</mi><mi>a</mi></mrow><mo>+</mo></msup><annotation encoding="application/x-tex">{Na}^{+}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mrow><mi>C</mi><mi>a</mi></mrow><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">{Ca}^{2 +}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>K</mi><mo>+</mo></msup><annotation encoding="application/x-tex">K^{+}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mrow><mi>M</mi><mi>g</mi></mrow><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">{Mg}^{2 +}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mrow><mi>B</mi><mi>a</mi></mrow><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">{Ba}^{2 +}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mrow><mi>S</mi><mi>r</mi></mrow><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">{Sr}^{2 +}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mrow><mi>C</mi><mi>l</mi></mrow><mo>−</mo></msup><annotation encoding="application/x-tex">{Cl}^{-}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mrow><mi>H</mi><mi>C</mi><mi>O</mi></mrow><mn>3</mn><mo>−</mo></msubsup><annotation encoding="application/x-tex">{HCO}_{3}^{-}</annotation></semantics></math>and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mrow><mi>S</mi><mi>O</mi></mrow><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><annotation encoding="application/x-tex">{SO}_{4}^{2 -}</annotation></semantics></math>.
+A spatially distributed salinity field,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>S</mi><mo accent="true">̂</mo></mover><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.222em"></mspace></mrow><annotation encoding="application/x-tex">\widehat{S}\left( \mathbf{x} \right)\ </annotation></semantics></math>can
+be estimated as follows:</p>
+<p><div class="eq"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>S</mi><mo accent="true">̂</mo></mover><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>α</mi><mspace width="0.167em"></mspace><msub><mover><mi>S</mi><mo accent="true">̂</mo></mover><mrow><mi>U</mi><mi>K</mi></mrow></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.167em"></mspace><msub><mover><mi>S</mi><mo accent="true">̂</mo></mover><mrow><mi>M</mi><mi>L</mi></mrow></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="2.0em"></mspace><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\widehat{S}\left( \mathbf{x} \right) = \alpha\,{\widehat{S}}_{UK}\left( \mathbf{x} \right) + (1 - \alpha)\,{\widehat{S}}_{ML}\left( \mathbf{x} \right)\qquad (1)</annotation></semantics></math></div></p>
+<p>where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mover><mi>S</mi><mo accent="true">̂</mo></mover><mrow><mi>U</mi><mi>K</mi></mrow></msub><annotation encoding="application/x-tex">{\widehat{S}}_{UK}</annotation></semantics></math>
+enforces spatial continuity via variogram-based covariance structure
+(Universal kriging),
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mover><mi>S</mi><mo accent="true">̂</mo></mover><mrow><mi>M</mi><mi>L</mi></mrow></msub><annotation encoding="application/x-tex">{\widehat{S}}_{ML}</annotation></semantics></math>
+captures nonlinear geochemical dependencies (XGBoost algorithm), and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>∈</mo><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">\alpha \in \lbrack 0,1\rbrack</annotation></semantics></math>
+is a blending weight determined from cross-validation (Fahimuddin et
+al., 2025). This formulation preserves basin-scale smoothness while
+honoring multivariate geochemical controls (Cressie 1993). Based on this
+high-resolution TDS surface, spatial gradients of the reconstructed
+salinity field are then computed to quantify chemical contrasts, and
+simultaneously high-gradient zones are interpreted as hydro-chemical
+fronts (Zhang and Manheim, 2005). In this case, chemical discontinuities
+are inferred from the magnitude of the reconstructed field’s spatial
+gradient,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>∇</mi><mover><mi>S</mi><mo accent="true">̂</mo></mover><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\nabla\widehat{S}\left( \mathbf{x} \right)</annotation></semantics></math>:</p>
+<p><div class="eq"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">∥</mo><mi>∇</mi><mover><mi>S</mi><mo accent="true">̂</mo></mover><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">∥</mo></mrow><mo>=</mo><msqrt><mrow><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi>∂</mi><mover><mi>S</mi><mo accent="true">̂</mo></mover></mrow><mrow><mi>∂</mi><mi>x</mi></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>+</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi>∂</mi><mover><mi>S</mi><mo accent="true">̂</mo></mover></mrow><mrow><mi>∂</mi><mi>y</mi></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup></mrow></msqrt><mspace width="2.0em"></mspace><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">G\left( \mathbf{x} \right) = \left\lVert \nabla\widehat{S}\left( \mathbf{x} \right) \right\rVert = \sqrt{\left( \frac{\partial\widehat{S}}{\partial x} \right)^{2} + \left( \frac{\partial\widehat{S}}{\partial y} \right)^{2}}\qquad (2)</annotation></semantics></math></div></p>
+<p>Here the total spatial rate of change of salinity for a given
+location is denoted as
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">G\left( \mathbf{x} \right)</annotation></semantics></math>
+where higher values indicate sharp salinity contrasts, interpreted as
+hydro-chemical fronts separating distinct flow or mixing domains. Unlike
+absolute concentration thresholds, this derivative-based measure
+identifies structural discontinuities independent of background salinity
+level (Gillespie et al., 2022). To extract these interfaces and preserve
+their structural significance, a percentile-based threshold
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>G</mi><mrow><mi>t</mi><mi>h</mi><mi>r</mi></mrow></msub><annotation encoding="application/x-tex">G_{thr}</annotation></semantics></math>
+(e.g., upper 20–30% of gradient magnitudes) is applied to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">G\left( \mathbf{x} \right)</annotation></semantics></math>.
+This ensures isolating statistically significant contrasts relative to
+basin-wide variability (Marr and Hildreth, 1980). Because natural mixing
+and interpolation uncertainty may produce narrow transitional halos
+around sharp gradients, a spatial buffering operation is applied to all
+high-gradient grid cells. This “buffered zone” represents chemically
+transitional regions where salinity changes rapidly and hydraulic
+connectivity may be ambiguous. The <em>complement</em> of these buffered
+fronts defines the operationally stable interior domain:</p>
+<p><div class="eq"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Ω</mi><mrow><mi>s</mi><mi>a</mi><mi>f</mi><mi>e</mi></mrow></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><mi>𝐱</mi><mo>∈</mo><mi>Ω</mi><mspace width="0.333em"></mspace><mo stretchy="true" form="infix">|</mo><mspace width="0.333em"></mspace><mi>G</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>&lt;</mo><msub><mi>G</mi><mrow><mi>t</mi><mi>h</mi><mi>r</mi></mrow></msub><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> and outside buffer</mtext></mrow><mo stretchy="true" form="postfix">}</mo></mrow></mrow><annotation encoding="application/x-tex">\Omega_{safe} = \left\{ \mathbf{x} \in \Omega\mspace{6mu} \middle| \mspace{6mu} G\left( \mathbf{x} \right) &lt; G_{thr}\text{ and outside buffer} \right\}</annotation></semantics></math></div></p>
+<p>where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Ω</mi><mrow><mi>s</mi><mi>a</mi><mi>f</mi><mi>e</mi></mrow></msub><mspace width="0.222em"></mspace></mrow><annotation encoding="application/x-tex">\Omega_{safe}\ </annotation></semantics></math>corresponds
+to spatially smooth, low-gradient regions interpreted as
+hydro-chemically coherent compartments (Chihi et al., 2015). These
+compartments exhibit minimal lateral salinity variability and are
+therefore, considered as structurally consistent units for subsequent
+hydraulic testing. In this case, each connected region within
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Ω</mi><mrow><mi>s</mi><mi>a</mi><mi>f</mi><mi>e</mi></mrow></msub><annotation encoding="application/x-tex">\Omega_{safe}</annotation></semantics></math>
+is labeled as a discrete <em>salinity compartment</em> and forms the
+basis for physics-based validation under imposed water pumping
+scenarios. To ensure internal consistency between chemically derived
+fronts and operational constraints, a quantitative quality control (QC)
+mismatch metric is computed. Specifically, the percentage of no-drill
+pixels located within
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>X</mi><annotation encoding="application/x-tex">X</annotation></semantics></math>
+grid cells of a compartment-label boundary is evaluated: high %
+indicates geometric agreement between gradient-derived fronts and
+buffered exclusion zones. On the contrary, elevated <em>spill
+percentages</em> suggest over-buffering or misalignment between chemical
+segmentation and imposed operational masks.</p>
+<p>To evaluate whether geochemically derived compartments represent
+hydraulically meaningful domains, a controlled pumping scenario is
+imposed at a location,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝐱</mi><mn>0</mn></msub><mo>∈</mo><msub><mi>Ω</mi><mrow><mi>s</mi><mi>a</mi><mi>f</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathbf{x}_{0} \in \Omega_{safe}</annotation></semantics></math>
+, i.e., within the interior of a salinity-defined compartment outside
+buffered transition zones. Late-time drawdown is approximated using the
+Cooper–Jacob logarithmic approximation derived from the Theis analytical
+solution for transient radial flow in confined aquifers (Theis, 1935;
+Cooper and Jacob, 1946) as shown below:</p>
+<p><div class="eq"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo>,</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mfrac><mi>Q</mi><mrow><mn>4</mn><mi>π</mi><mi>T</mi></mrow></mfrac><mo>ln</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mn>2.25</mn><mspace width="0.167em"></mspace><mi>T</mi><mspace width="0.167em"></mspace><mi>t</mi></mrow><mrow><mi>r</mi><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mi>S</mi></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="2.0em"></mspace><mrow><mo stretchy="true" form="prefix">(</mo><mn>3</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">s\left( \mathbf{x},t \right) = \frac{Q}{4\pi T}\ln\left( \frac{2.25\, T\, t}{r(\mathbf{x})^{2}S} \right)\qquad (3)</annotation></semantics></math></div></p>
+<p>where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msqrt><mrow><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>−</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>+</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>y</mi><mo>−</mo><msub><mi>y</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">r\left( \mathbf{x} \right) = \sqrt{(x - x_{0})^{2} + (y - y_{0})^{2}}</annotation></semantics></math>,
+is radial distance from a chosen pumping location,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>
+is pumping rate,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math>
+is transmissivity, and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math>
+is storativity. The compartment outline,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Ω</mi><mrow><mi>s</mi><mi>a</mi><mi>f</mi><mi>e</mi></mrow></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">\Omega_{safe},</annotation></semantics></math>
+directly governs where hydraulic response is considered valid and where
+propagation of drawdown across fronts must be evaluated. Hydraulic
+validation metrics include maximum drawdown within
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Ω</mi><mrow><mi>s</mi><mi>a</mi><mi>f</mi><mi>e</mi></mrow></msub><annotation encoding="application/x-tex">\Omega_{safe}</annotation></semantics></math>
+and drawdown intrusion into buffered front zones. If drawdown remains
+largely confined within a compartment and does not significantly
+propagate across salinity fronts, the chemically derived segmentation
+can be considered hydraulically coherent with confidence.</p>
+<h3>Example</h3>
+<p>The proposed methodology has been implemented as a representative
+synthetic use case by leveraging data from the openly available U.S.
+Geological Survey (USGS) produced water geochemical database. This
+dataset contains geochemical and associated meta data for more than
+100,000 produced water and deep formation water samples over 300 wells
+(Blondes et al., 2019). In this study, the Smackover formation has been
+chosen to demonstrate validity of the proposed method using public data,
+and this should not be considered as a fully calibrated hydraulic model
+of the Smackover system. For the numerical experiments, the theoretical
+framework described in the previous section, was implemented through a
+modular software workflow developed in Python and associated Sci-kit
+learn libraries (Pedregosa et al., 2011). This application sequentially
+reconstructs the salinity field, extracts geochemical fronts, delineates
+compartments, and performs physics-based validation. The geo-spatial
+interpolation closely follows methodology described in Fahimuddin et
+al. 2025, and related references. Figure 1 presents the hybrid
+reconstruction of total dissolved solids (TDS) across the Smackover
+Formation, generated using a weighted combination of Universal Kriging
+and XGBoost regression. A pronounced northwest–southeast salinity
+gradient is observed, with TDS increasing from approximately 120,000
+mg/L to values exceeding 350,000 mg/L. Contour lines display coherent,
+elongated trends aligned with regional structural orientation of the
+Smackover trend. The absence of artificial “bulls-eye’ artifacts
+bolstering the validity of the regional geo-spatial predictability of
+TDS trend, based on this hybrid approach.</p>
+<figure class="narrow">
+        <button type="button" data-zoom="img/abul_fig1.png" data-cap="Figure 1. Reconstruction of the Smackover TDS map"><img src="img/abul_fig1.png" alt="Map of predicted total dissolved solids across the Smackover aquifer" loading="lazy"></button>
+        <figcaption><b>Figure 1.</b> Geo-spatially consistent reconstruction of the Smackover TDS map.</figcaption>
+      </figure>
+<p>Figure 2 illustrates the sequential transformation of the
+reconstructed Smackover TDS surface into hydraulically testable salinity
+compartments. Starting from the hybrid TDS map, the spatial gradient
+magnitude is computed to quantify the rate of lateral salinity change
+(Figure 2a). High |∇S| values delineate narrow, elongated zones where
+salinity varies sharply over short distances, reflecting potential
+hydro-chemical discontinuities. These features trend consistently with
+the regional NW–SE structural fabric as already observed in Figure 1. In
+contrast, broad low-gradient interiors indicate chemically homogeneous
+regions with smooth lateral continuity. To objectively isolate
+structurally significant discontinuities, the gradient field is
+normalized using percentile-based scaling to generate a front-likelihood
+surface ranging from 0 to 1. This transformation suppresses background
+variability while emphasizing statistically significant contrasts
+relative to basin-wide variability. High-likelihood zones cluster along
+the previously identified gradient ridges, providing a probabilistic
+representation of chemical fronts rather than a binary threshold. By
+applying a percentile threshold to the front-likelihood field isolates
+the most significant discontinuities (threshold range derived through
+sensitivity analysis). The resulting binary mask (Figure 2b) delineates
+chemically ambiguous boundary corridors where salinity changes rapidly
+and hydraulic connectivity may be uncertain. These zones represent
+exclusion regions rather than compartments. The <em>complement</em> of
+the buffered boundary mask defines a spatially coherent interior domain,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Ω</mi><mrow><mi>s</mi><mi>a</mi><mi>f</mi><mi>e</mi></mrow></msub><annotation encoding="application/x-tex">\Omega_{safe}</annotation></semantics></math>,
+consisting of low-gradient regions with internally smooth salinity
+structure. Connected-component labeling within this stable interior
+domain yields discrete salinity compartments (Figure 2c). Each
+compartment is, therefore, geometrically bounded by statistically
+significant chemical fronts and exhibits internal salinity continuity
+which satisfy the definition of a hydro-chemically coherent unit (Chihi
+et al., 2015). Finally, the operational drilling footprint is derived by
+excluding all buffered boundary zones from the valid salinity domain.
+The resulting drillable mask (Figure 2d) represents the spatial subset
+of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Ω</mi><mrow><mi>s</mi><mi>a</mi><mi>f</mi><mi>e</mi></mrow></msub><annotation encoding="application/x-tex">\Omega_{safe}</annotation></semantics></math>
+where salinity variability is minimal and proximity to fronts, is
+avoided. Approximately 7.8% of the mapped Smackover domain satisfies the
+defined safe-footprint criteria. This region forms the basis for
+subsequent physics-based hydraulic validation under imposed water
+extraction scenarios.</p>
+<figure>
+        <button type="button" data-zoom="img/abul_fig2.png" data-cap="Figure 2. Salinity gradient, front mask, compartments and safe zone"><img src="img/abul_fig2.png" alt="Four panels: salinity gradient map, binary front mask, labelled compartments and safe drilling footprint" loading="lazy"></button>
+        <figcaption><b>Figure 2.</b> (a) Map of calculated salinity gradient; (b) binary mask delineating chemically ambiguous boundary corridors; (c) discrete, labelled and stable salinity compartments; (d) safe zone, Ω<sub>safe</sub>, for pumping scenario testing.</figcaption>
+      </figure>
+<p>Figure 3a quantifies the geometric consistency between
+gradient-derived compartment boundaries and the imposed no-drill buffer.
+For a buffer distance of X=6 grid cells, only 7.0% of no-drill pixels
+are located within the prescribed proximity of a compartment boundary,
+whereas 93.0% fall beyond this threshold (“spill”). In addition, the
+drillable footprint
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Ω</mi><mrow><mi>s</mi><mi>a</mi><mi>f</mi><mi>e</mi></mrow></msub><annotation encoding="application/x-tex">\Omega_{safe}</annotation></semantics></math>)
+represents 7.8% of the valid aquifer domain. The relatively low QC %
+indicates that the buffered no-drill zone extends well beyond immediate
+high-gradient ridges, while the limited safe-area percentage confirms
+that only a small fraction of the basin meets the defined stability
+criteria. Figure 3b further evaluates hydraulic behavior of this
+drillable footprint under a representative pumping scenario of 500
+m³/day over five years using MODFLOW simulation. The maximum predicted
+drawdown across the modeled domain is 0.41 m, while maximum drawdown
+within no-drill regions, is limited to 0.10 m, indicating substantial
+hydraulic attenuation across chemically defined boundaries.</p>
+<figure>
+        <button type="button" data-zoom="img/abul_fig3.png" data-cap="Figure 3. Geometric consistency and hydraulic behavior of the safe zone"><img src="img/abul_fig3.png" alt="Two panels: QC mismatch map and simulated drawdown within the safe footprint" loading="lazy"></button>
+        <figcaption><b>Figure 3.</b> (a) Quantification of geometric consistency between gradient-derived compartment boundaries and the imposed no-drill buffer; (b) hydraulic behavior of the safe zone under a representative pumping scenario of 500 m³/day over 5 years.</figcaption>
+      </figure>
+<h3>Conclusions</h3>
+<p>This study presents a structured workflow for delineating salinity
+compartments by integrating hybrid geostatistical and machine learning
+reconstruction with gradient-based front detection and physics-informed
+hydraulic validation. Several limitations should be acknowledged. First,
+the reconstructed salinity field remains dependent on data density and
+potential spatial sampling bias. Second, percentile thresholds and
+buffer distances are tunable parameters and may introduce subjectivity
+into data-driven boundary delineation. Third, the current implementation
+is primarily two-dimensional and does not explicitly resolve vertical
+stratification or multi-layer connectivity. Despite these limitations,
+the methodology quantitatively integrates geo-chemical segmentation with
+simulated groundwater response. The proposed workflow therefore bridges
+the gap between descriptive hydrochemistry and predictive
+reservoir-scale decision-making.</p>
+
+    </div>
+  </article>
+
+  <footer>Tanya O. Alauddin · Research abstracts and conference posters, 2024 to 2026</footer>
+</div>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lb-bar">
+    <span id="lb-cap"></span>
+    <div class="btns">
+      <button type="button" id="lb-zoom">Actual size</button>
+      <button type="button" id="lb-close">Close</button>
+    </div>
+  </div>
+  <div class="lb-stage" id="lb-stage"><img id="lb-img" alt=""></div>
+</div>
+
+<script>
+(function () {
+  var lb = document.getElementById('lightbox'), img = document.getElementById('lb-img'),
+      cap = document.getElementById('lb-cap'), stage = document.getElementById('lb-stage'),
+      zoomBtn = document.getElementById('lb-zoom'), closeBtn = document.getElementById('lb-close'), last = null;
+  function setFull(on) { stage.classList.toggle('full', on); zoomBtn.textContent = on ? 'Fit to screen' : 'Actual size'; }
+  function open(btn) {
+    last = btn; img.src = btn.getAttribute('data-zoom'); img.alt = btn.querySelector('img').alt;
+    cap.textContent = btn.getAttribute('data-cap') || ''; setFull(false);
+    lb.hidden = false; document.body.style.overflow = 'hidden'; closeBtn.focus();
+  }
+  function close() { lb.hidden = true; document.body.style.overflow = ''; img.removeAttribute('src'); if (last) last.focus(); }
+  document.querySelectorAll('[data-zoom]').forEach(function (b) { b.addEventListener('click', function () { open(b); }); });
+  img.addEventListener('click', function () { setFull(!stage.classList.contains('full')); });
+  zoomBtn.addEventListener('click', function () { setFull(!stage.classList.contains('full')); });
+  closeBtn.addEventListener('click', close);
+  stage.addEventListener('click', function (e) { if (e.target === stage) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !lb.hidden) close(); });
+})();
+</script>
+
+</body>
+</html>
