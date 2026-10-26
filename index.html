@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>*,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <meta name="description" content="Research abstracts and conference posters by Tanya O. Alauddin, applying machine learning to carbonate thin sections, digital rocks and aquifer salinity.">
 <meta name="author" content="Tanya O. Alauddin">
-<style>*,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Tanya O. Alauddin Research</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +20,7 @@
   --rule: #d6dbd8;
   --accent: #1c6b66;
   --accent-soft: #e2efec;
+  --code-bg: #1d2830; --code-bar: #17212a; --code-line: #2c3a44; --code-fg: #e4ebe8; --code-dim: #8fa1ab; --code-kw: #7fd1c6; --code-str: #e8c27a; --code-num: #f0a37f; --code-fn: #9cc4ff;
   --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
   --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
   --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
@@ -55,18 +56,35 @@ h1 {
   font-family: var(--font-display); font-weight: 700; font-size: clamp(34px, 6vw, 52px);
   line-height: 1.08; margin: 0 0 18px; text-wrap: balance; letter-spacing: -0.01em;
 }
-.lede { font-size: 19px; color: var(--muted); max-width: 62ch; margin: 0; }
+.lede { font-size: 17.5px; line-height: 1.6; color: var(--muted); max-width: 64ch; margin: 0; }
 
-nav.index { padding-block: 28px 8px; }
-nav.index ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
-nav.index a {
-  display: grid; grid-template-columns: 9.5em 1fr; gap: 16px; align-items: baseline;
-  padding: 10px 0; text-decoration: none; color: var(--ink); border-bottom: 1px dashed var(--rule);
+.hero { display: flex; align-items: flex-start; gap: 40px; }
+.hero-text { flex: 1; min-width: 0; }
+.headshot {
+  flex-shrink: 0; width: 184px; height: 184px; border-radius: 3px; object-fit: cover;
+  border: 1px solid var(--rule);
 }
-nav.index a:hover .t { color: var(--accent); }
-nav.index .v { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); letter-spacing: .02em; }
-nav.index .t { font-family: var(--font-ui); font-size: 15px; font-weight: 500; line-height: 1.4; }
-@media (max-width: 560px) { nav.index a { grid-template-columns: 1fr; gap: 2px; } }
+@media (max-width: 640px) {
+  .hero { flex-direction: column-reverse; align-items: flex-start; gap: 22px; }
+  .headshot { width: 132px; height: 132px; }
+}
+section.index { padding-block: 36px 8px; }
+.index-h { font-family: var(--font-ui); font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin: 0 0 8px; }
+section.index ol { list-style: none; margin: 0; padding: 0; display: grid; }
+a.pub {
+  display: grid; grid-template-columns: 1fr; gap: 0; align-items: start;
+  padding: 18px 0; text-decoration: none; color: var(--ink); border-bottom: 1px solid var(--rule);
+}
+.thumb { display: block; width: 132px; aspect-ratio: 4 / 3; max-width: 100%; border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; background: #fff; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pub-text { display: grid; gap: 4px; min-width: 0; }
+.pt { font-family: var(--font-display); font-weight: 600; font-size: 18.5px; line-height: 1.3; }
+a.pub:hover .pt { color: var(--accent); }
+.pa { font-family: var(--font-ui); font-size: 14px; color: var(--muted); }
+.pa b { color: var(--ink); font-weight: 600; }
+.pv { font-family: var(--font-body); font-size: 15px; color: var(--muted); }
+.pk { font-family: var(--font-mono); font-style: normal; font-size: 11.5px; letter-spacing: .04em; color: var(--accent); margin-left: 6px; }
+@media (max-width: 560px) { .pt { font-size: 16.5px; } }
 
 article { padding-block: 56px 8px; border-bottom: 1px solid var(--rule); scroll-margin-top: 16px; }
 .meta { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin-bottom: 14px; }
@@ -133,26 +151,65 @@ footer { padding-block: 40px 0; font-family: var(--font-ui); font-size: 13px; co
 .lb-stage img { max-width: 100%; height: auto; background: #fff; cursor: zoom-in; }
 .lb-stage.full { justify-content: flex-start; }
 .lb-stage.full img { max-width: none; cursor: zoom-out; }
-@media (prefers-reduced-motion: no-preference) { nav.index a, figure button { transition: color .15s, border-color .15s; } }
+@media (prefers-reduced-motion: no-preference) { a.pub .pt, figure button { transition: color .15s, border-color .15s; } }
+
+.code-jump { font-family: var(--font-ui); font-size: 14.5px; font-weight: 500; margin: 18px 0 0; }
+.code-sec { padding-block: 56px 16px; border-bottom: 1px solid var(--rule); }
+.code-sum { max-width: 68ch; margin: 0 0 18px; }
+.stack { list-style: none; padding: 0; margin: 0 0 22px; display: flex; flex-wrap: wrap; gap: 8px; }
+.stack li { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); border: 1px solid var(--rule); border-radius: 3px; padding: 3px 9px; }
+.pipeline { list-style: none; padding: 0; margin: 0 0 26px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.pipeline li { display: grid; gap: 8px; align-content: start; font-family: var(--font-ui); font-size: 13.5px; line-height: 1.4; padding: 12px; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; }
+.pipeline .n { font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
+@media (max-width: 760px) { .pipeline { grid-template-columns: 1fr; } .pipeline li { grid-template-columns: 24px 1fr; } }
+.code-card { border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--code-bg); }
+.ctabs { display: flex; flex-wrap: wrap; gap: 2px; padding: 8px 8px 0; background: var(--code-bar); border-bottom: 1px solid var(--code-line); }
+.ctab { font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: var(--code-dim); background: transparent; border: 0; border-radius: 4px 4px 0 0; padding: 8px 14px; cursor: pointer; }
+.ctab[aria-selected="true"] { color: var(--code-fg); background: var(--code-bg); }
+.cfile { font-family: var(--font-mono); font-size: 12px; color: var(--code-dim); padding: 12px 20px 0; }
+.cpanel pre { max-height: 560px; margin: 0; padding: 10px 20px 18px; overflow: auto; }
+.cpanel code { font-family: var(--font-mono); font-size: 13.5px; line-height: 1.65; color: var(--code-fg); white-space: pre; }
+.hljs-keyword, .hljs-built_in { color: var(--code-kw); }
+.hljs-string, .hljs-doctag { color: var(--code-str); }
+.hljs-comment { color: var(--code-dim); font-style: italic; }
+.hljs-number, .hljs-literal { color: var(--code-num); }
+.hljs-title, .hljs-title.function_ { color: var(--code-fn); }
+.hljs-params { color: var(--code-fg); }
+.results { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 22px 0 18px; }
+.results div { display: grid; gap: 4px; padding: 12px 0; border-top: 2px solid var(--accent); }
+.rv { font-family: var(--font-display); font-weight: 600; font-size: 24px; font-variant-numeric: tabular-nums; }
+.rl { font-family: var(--font-ui); font-size: 13px; color: var(--muted); }
+@media (max-width: 640px) { .results { grid-template-columns: 1fr 1fr; } }
+.code-foot { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline; font-family: var(--font-ui); font-size: 14px; margin: 0; }
+.code-foot a { font-weight: 600; }
+.ai-note { color: var(--muted); font-size: 13px; }
 </style>
 </head>
 <body>
 
+
 <div class="wrap">
   <header class="top">
-    <p class="eyebrow">Research portfolio · 2024 to 2026</p>
-    <h1>Tanya O. Alauddin</h1>
-    <p class="lede">Conference abstracts and posters applying machine learning to subsurface data: carbonate thin sections, grain-scale petrography, digital rock permeability and aquifer salinity compartments.</p>
+    <div class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">Research portfolio · 2024 to 2026</p>
+        <h1>Tanya O. Alauddin</h1>
+        <p class="lede">I’m a geologist who sees the subsurface as one of the richest, least-explored datasets on the planet. Turning that data into understanding is what excites me, and machine learning is the most powerful tool I’ve found for doing it. Every thin section, scan and sensor reading holds a signal waiting for the right model, and I love building the methods that pull it out. Paired with computer vision and statistics, those methods turn interpretation once done by eye into something we can measure, scale and trust. I’m happiest at that intersection, where a good model changes how we understand the earth and the decisions we make about it.</p>
+      </div>
+      <img class="headshot" src="tanya_headshot.jpg" alt="Portrait of Tanya O. Alauddin" width="184" height="184">
+    </div>
   </header>
 
-  <nav class="index" aria-label="Contents">
+  <section class="index" aria-label="Publications">
+    <h2 class="index-h">Selected publications</h2>
     <ol>
-      <li><a href="#geo4"><span class="v">GEO 4.0 · 2024</span><span class="t">Neural network architecture and hyperparameter effects on automated carbonate thin section classification</span></a></li>
-      <li><a href="#grains"><span class="v">IMAGE · 2026</span><span class="t">Deep learning-based grain segmentation and textural analysis from thin section images</span></a></li>
-      <li><a href="#agu"><span class="v">AGU · 2026</span><span class="t">Graph-based approaches for permeability prediction and analysis of digital rocks</span></a></li>
-      <li><a href="#salinity"><span class="v">IMAGE · 2026</span><span class="t">From geochemical fronts to hydraulic compartments</span></a></li>
+      <li><a class="pub" href="#geo4"><span class="pub-text"><span class="pt">Neural network architecture and hyperparameter effects on automated carbonate thin section classification</span><span class="pa"><b>Tanya O. Alauddin</b> and Mustafa A. Al Ibrahim</span><span class="pv"><i>GEO 4.0 Digitalization in Geosciences Symposium, 2024</i> <span class="pk">Abstract · Poster</span></span></span></a></li>
+      <li><a class="pub" href="#grains"><span class="pub-text"><span class="pt">Deep learning-based grain segmentation and textural analysis from thin section images for reservoir characterization</span><span class="pa"><b>Tanya O. Alauddin</b> and Mustafa A. Al Ibrahim</span><span class="pv"><i>IMAGE 2026</i> <span class="pk">Abstract · Poster</span></span></span></a></li>
+      <li><a class="pub" href="#agu"><span class="pub-text"><span class="pt">Graph-based approaches for permeability prediction and analysis of digital rocks</span><span class="pa"><b>Tanya O. Alauddin</b> and Rayan Kanfar</span><span class="pv"><i>AGU Annual Meeting, 2026</i> <span class="pk">Abstract</span></span></span></a></li>
+      <li><a class="pub" href="#salinity"><span class="pub-text"><span class="pt">From geochemical fronts to hydraulic compartments: application of machine learning, geostatistics and segmentation algorithms with physics-based validation</span><span class="pa">Abul Khair Fahimuddin, Ibrahim Atwah, Waleed Saeed and <b>Tanya Alauddin</b></span><span class="pv"><i>IMAGE 2026</i> <span class="pk">Expanded abstract</span></span></span></a></li>
     </ol>
-  </nav>
+    <p class="code-jump"><a href="#code">Code: digital rock permeability pipeline</a></p>
+  </section>
 
   <article id="geo4">
     <div class="meta"><span class="venue">GEO 4.0 Symposium · Al Khobar · 2024</span><span class="chip">First author</span><span class="chip plain">Abstract + poster</span></div>
@@ -538,6 +595,204 @@ reservoir-scale decision-making.</p>
     </div>
   </article>
 
+
+  <section class="code-sec" id="code" aria-label="Code">
+    <p class="eyebrow">Code</p>
+    <h2>Digital rock permeability from pore-network graphs</h2>
+    <p class="code-sum">The Python pipeline behind the AGU 2026 abstract. It turns segmented micro-CT images of carbonate rock into two kinds of graph, an explicit pore network and a topological Mapper graph, simulates Stokes flow to get ground-truth permeability, and tests how well each graph's structure predicts it.</p>
+    <ul class="stack" aria-label="Tools">
+      <li>Python</li><li>PoreSpy</li><li>OpenPNM</li><li>KeplerMapper</li><li>NetworkX</li><li>scikit-learn</li><li>SciPy</li><li>NumPy</li>
+    </ul>
+    <ol class="pipeline" aria-label="Pipeline">
+      <li><span class="n">1</span><span>Load micro-CT volumes and cut subvolumes</span></li>
+      <li><span class="n">2</span><span>Extract the pore network with SNOW</span></li>
+      <li><span class="n">3</span><span>Simulate Stokes flow for permeability</span></li>
+      <li><span class="n">4</span><span>Build Mapper graphs with a pore-radius lens</span></li>
+      <li><span class="n">5</span><span>Compute graph metrics and predict log-permeability under repeated cross-validation</span></li>
+    </ol>
+    <div class="code-card">
+      <div class="ctabs" role="tablist" aria-label="Code excerpts"><button type="button" role="tab" class="ctab" id="tab-code-0" aria-controls="code-0" aria-selected="true">Pore network</button><button type="button" role="tab" class="ctab" id="tab-code-1" aria-controls="code-1" aria-selected="false">Permeability</button><button type="button" role="tab" class="ctab" id="tab-code-2" aria-controls="code-2" aria-selected="false">Mapper + pore radius</button><button type="button" role="tab" class="ctab" id="tab-code-3" aria-controls="code-3" aria-selected="false">Graph metrics</button><button type="button" role="tab" class="ctab" id="tab-code-4" aria-controls="code-4" aria-selected="false">Cross-validation</button></div>
+      <div class="cpanel" id="code-0" role="tabpanel" aria-labelledby="tab-code-0"><div class="cfile">pore_network_openpnm.py</div><pre><code class="language-python">def extract_network(pore_mask, voxel_size):
+    &quot;&quot;&quot;Run the SNOW algorithm: split the pore space into individual pores and find the
+    throats connecting them. Returns an OpenPNM network object.&quot;&quot;&quot;
+    import porespy as ps
+    import openpnm as op
+
+    # snow2 wants True = pore space. boundary_width adds a thin layer of boundary pores
+    # on each face so we can later push fluid in one side and out the other.
+    snow = ps.networks.snow2(pore_mask, voxel_size=voxel_size, boundary_width=3)
+
+    # turn PoreSpy&#x27;s raw output into a proper OpenPNM network
+    pn = op.io.network_from_porespy(snow.network)
+
+    # remove any pores that ended up disconnected from the main network (they break the sim)
+    health = op.utils.check_network_health(pn)
+    bad = health[&quot;disconnected_pores&quot;]
+    if len(bad) &gt; 0:
+        op.topotools.trim(network=pn, pores=bad)
+    print(f&quot;[network] pores={pn.Np}  throats={pn.Nt}&quot;)
+    return pn</code></pre></div><div class="cpanel" id="code-1" role="tabpanel" aria-labelledby="tab-code-1" hidden><div class="cfile">pore_network_openpnm.py</div><pre><code class="language-python">def simulate_permeability(pn, im_shape, voxel_size, axis=0):
+    &quot;&quot;&quot;Push water through the network along one axis and measure the flow, then use
+    Darcy&#x27;s law to back out permeability. Returns permeability in milliDarcy.&quot;&quot;&quot;
+    import openpnm as op
+
+    # give pores/throats physical sizes (spheres for pores, cylinders for throats)
+    pn.add_model_collection(op.models.collections.geometry.spheres_and_cylinders)
+    pn.regenerate_models()
+
+    # define the fluid (water) and its flow physics
+    water = op.phase.Water(network=pn)
+    water.add_model_collection(op.models.collections.physics.standard)
+    water.regenerate_models()
+
+    # pick the inlet and outlet faces for the chosen flow direction
+    face_in = {0: &quot;xmin&quot;, 1: &quot;ymin&quot;, 2: &quot;zmin&quot;}[axis]
+    face_out = {0: &quot;xmax&quot;, 1: &quot;ymax&quot;, 2: &quot;zmax&quot;}[axis]
+    inlet = pn.pores(face_in)
+    outlet = pn.pores(face_out)
+
+    # set up and solve steady-state flow: high pressure in, zero pressure out
+    P_in, P_out = 1.0, 0.0          # Pascals (a relative 1 Pa drop is fine for absolute K)
+    flow = op.algorithms.StokesFlow(network=pn, phase=water)
+    flow.set_value_BC(pores=inlet, values=P_in)
+    flow.set_value_BC(pores=outlet, values=P_out)
+    flow.run()
+
+    # total volumetric flow rate entering the inlet
+    Q = float(flow.rate(pores=inlet, mode=&quot;group&quot;)[0])   # m^3/s
+    mu = float(water[&quot;pore.viscosity&quot;].mean())           # fluid viscosity, Pa*s
+
+    # sample geometry: L = length along flow, A = cross-section area facing the flow
+    dims = np.array(im_shape) * voxel_size               # physical size in metres
+    L = dims[axis]
+    A = np.prod(np.delete(dims, axis))
+    dP = P_in - P_out
+
+    K = Q * mu * L / (A * dP)          # Darcy&#x27;s law -&gt; permeability in m^2
+    K_mD = K / 9.869233e-16            # convert m^2 to milliDarcy
+    print(f&quot;[flow] Q={Q:.3e} m^3/s   K={K:.3e} m^2   =  {K_mD:.2f} mD&quot;)
+    return K_mD</code></pre></div><div class="cpanel" id="code-2" role="tabpanel" aria-labelledby="tab-code-2" hidden><div class="cfile">rock_to_graph.py</div><pre><code class="language-python">def pore_points_and_radii(pore_mask, max_points=20000, seed=0):
+    &quot;&quot;&quot;Like volume_to_points, but also returns each point&#x27;s LOCAL PORE RADIUS
+    (its distance to the nearest grain, from the distance transform). Narrow throats
+    get small values, big pores large ones -- the flow-relevant structure the plain
+    coordinate cloud misses.&quot;&quot;&quot;
+    from scipy.ndimage import distance_transform_edt
+    coords = np.argwhere(pore_mask)
+    if len(coords) == 0:
+        raise ValueError(&quot;No pore voxels found -- check your pore value / threshold.&quot;)
+    if len(coords) &gt; max_points:
+        rng = np.random.default_rng(seed)
+        idx = rng.choice(len(coords), size=max_points, replace=False)
+        coords = coords[idx]
+    dt = distance_transform_edt(pore_mask)                 # pore radius at every voxel
+    ci = coords.astype(int)
+    radii = dt[ci[:, 0], ci[:, 1], ci[:, 2]]
+    return coords.astype(float), radii
+
+
+def build_mapper_graph(points, lens_values=None):
+    import kmapper as km
+    from sklearn.cluster import DBSCAN
+    from sklearn.decomposition import PCA
+
+    mapper = km.KeplerMapper(verbose=1)
+
+    # Lens: one PCA axis (geometry) plus a second dimension.
+    lens_geo = mapper.fit_transform(points, projection=PCA(n_components=1))
+    if lens_values is not None:
+        # distance-transform upgrade: use LOCAL PORE RADIUS as the second lens axis,
+        # so the graph organises pore space by pore size / throat width (flow-relevant).
+        second = np.asarray(lens_values, dtype=float).reshape(-1, 1)
+    else:
+        second = mapper.fit_transform(points, projection=&quot;l2norm&quot;)   # distance-to-mean proxy
+    lens = np.c_[lens_geo, second]
+
+    graph = mapper.map(
+        lens,
+        points,
+        cover=km.Cover(n_cubes=12, perc_overlap=0.35),
+        clusterer=DBSCAN(eps=3.0, min_samples=5),
+    )
+    return mapper, graph</code></pre></div><div class="cpanel" id="code-3" role="tabpanel" aria-labelledby="tab-code-3" hidden><div class="cfile">rock_to_graph.py</div><pre><code class="language-python">def graph_metrics(G):
+    import networkx as nx
+    m = {}
+    n, e = G.number_of_nodes(), G.number_of_edges()
+    m[&quot;n_nodes&quot;] = n
+    m[&quot;n_edges&quot;] = e
+
+    if n == 0:
+        return m
+
+    # --- topological ---
+    m[&quot;n_components&quot;] = nx.number_connected_components(G)          # Betti-0
+    m[&quot;n_cycles&quot;] = e - n + m[&quot;n_components&quot;]                      # Betti-1 (loops)
+    m[&quot;avg_degree&quot;] = 2 * e / n
+    m[&quot;density&quot;] = nx.density(G)
+    m[&quot;avg_clustering&quot;] = nx.average_clustering(G)
+    degs = [d for _, d in G.degree()]
+    m[&quot;max_degree&quot;] = max(degs)
+    try:
+        m[&quot;assortativity&quot;] = nx.degree_assortativity_coefficient(G)
+    except Exception:
+        m[&quot;assortativity&quot;] = float(&quot;nan&quot;)
+
+    # path-based metrics on the largest connected component
+    giant = G.subgraph(max(nx.connected_components(G), key=len)).copy()
+    m[&quot;giant_frac&quot;] = giant.number_of_nodes() / n
+    if giant.number_of_nodes() &gt; 1:
+        m[&quot;avg_shortest_path&quot;] = nx.average_shortest_path_length(giant)
+        m[&quot;diameter&quot;] = nx.diameter(giant)
+        m[&quot;avg_betweenness&quot;] = np.mean(list(nx.betweenness_centrality(giant).values()))
+        m[&quot;avg_closeness&quot;] = np.mean(list(nx.closeness_centrality(giant).values()))
+
+    # --- geometric (from node centroids) ---
+    cents = np.array([G.nodes[nd][&quot;centroid&quot;] for nd in G.nodes])
+    m[&quot;geom_spread&quot;] = float(np.linalg.norm(cents.std(axis=0)))
+    sizes = np.array([G.nodes[nd][&quot;size&quot;] for nd in G.nodes])
+    m[&quot;avg_node_size&quot;] = float(sizes.mean())
+    return m</code></pre></div><div class="cpanel" id="code-4" role="tabpanel" aria-labelledby="tab-code-4" hidden><div class="cfile">train_predictor_rf.py</div><pre><code class="language-python">FEATURES = [&quot;avg_node_size&quot;, &quot;geom_spread&quot;, &quot;avg_closeness&quot;,
+            &quot;avg_shortest_path&quot;, &quot;avg_degree&quot;, &quot;avg_clustering&quot;,
+            &quot;n_cycles&quot;, &quot;diameter&quot;, &quot;avg_betweenness&quot;, &quot;density&quot;]
+ACC_TOL = 0.5   # log10 units (~ factor of 3)
+
+
+def cv_rf(X, y, repeats=10, k=5, seed=0):
+    &quot;&quot;&quot;Repeated k-fold CV with a Random Forest. Returns metrics, pooled predictions,
+    and mean feature importances.&quot;&quot;&quot;
+    rkf = RepeatedKFold(n_splits=k, n_repeats=repeats, random_state=seed)
+    preds = np.zeros((repeats, len(y)))
+    rep_counts = np.zeros(len(y), dtype=int)
+    importances = []
+    r = 0
+    per_rep_pred = np.full(len(y), np.nan)
+    fold_i = 0
+    r2s, rmses, accs = [], [], []
+    # iterate manually so we can pool predictions per repeat
+    splits = list(rkf.split(X))
+    folds_per_rep = k
+    pred = np.full(len(y), np.nan)
+    for i, (train, test) in enumerate(splits):
+        rf = RandomForestRegressor(n_estimators=300, min_samples_leaf=3,
+                                   random_state=seed + i, n_jobs=-1)
+        rf.fit(X[train], y[train])
+        pred[test] = rf.predict(X[test])
+        importances.append(rf.feature_importances_)
+        if (i + 1) % folds_per_rep == 0:          # one full pass over the data done
+            r2s.append(1 - np.sum((y - pred) ** 2) / np.sum((y - y.mean()) ** 2))
+            rmses.append(np.sqrt(np.mean((y - pred) ** 2)))
+            accs.append(100 * np.mean(np.abs(y - pred) &lt;= ACC_TOL))
+            last_pred = pred.copy()
+            pred = np.full(len(y), np.nan)
+    return (np.mean(r2s), np.mean(rmses), np.mean(accs)), last_pred, np.mean(importances, 0)</code></pre></div>
+    </div>
+    <div class="results">
+      <div><span class="rv">0.39</span><span class="rl">R² on log-permeability</span></div>
+      <div><span class="rv">0.65</span><span class="rl">RMSE (log units)</span></div>
+      <div><span class="rv">65%</span><span class="rl">predictions within a factor of 3</span></div>
+      <div><span class="rv">0.07–255 mD</span><span class="rl">permeability range tested</span></div>
+    </div>
+    <p class="code-foot"><a href="https://github.com/tanyaalauddin/digital-rock-permeability" target="_blank" rel="noopener">View the full repository on GitHub</a><span class="ai-note">AI tools helped with parts of the implementation. The research question, the choice of rock samples, the two graph representations and their metrics, the simulation setup, all debugging and testing, and the analysis and interpretation of the results are my own work.</span></p>
+  </section>
   <footer>Tanya O. Alauddin · Research abstracts and conference posters, 2024 to 2026</footer>
 </div>
 
@@ -570,6 +825,18 @@ reservoir-scale decision-making.</p>
   closeBtn.addEventListener('click', close);
   stage.addEventListener('click', function (e) { if (e.target === stage) close(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !lb.hidden) close(); });
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+(function () {
+  try { if (window.hljs) document.querySelectorAll('.cpanel code').forEach(function (el) { window.hljs.highlightElement(el); }); } catch (e) {}
+  var tabs = document.querySelectorAll('.ctab');
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      tabs.forEach(function (o) { o.setAttribute('aria-selected', o === t ? 'true' : 'false'); document.getElementById(o.getAttribute('aria-controls')).hidden = o !== t; });
+    });
+  });
 })();
 </script>
 
